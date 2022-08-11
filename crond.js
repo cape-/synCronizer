@@ -68,23 +68,23 @@ Options:
     };
 
     //////// Main logic: parse arguments
-    const params = parseArgv(process.argv);
-    if (params.help)
-        return _printHelp();
+    try {
+        const params = parseArgv(process.argv);
+        if (params.help)
+            return _printHelp();
 
-    if (params.tabFile)
-        _tabFile = params.tabFile;
+        if (params.tabFile)
+            _tabFile = params.tabFile;
 
-    if (params.refreshRate)
-        _refreshRate = params.refreshRate === '1s' ? '* * * * * *' :
-        params.refreshRate === '10s' ? '*/10 * * * *' :
-        params.refreshRate === '1m' ? '* * * * *' :
-        params.refreshRate === '5m' ? '*/5 * * * *' :
-        params.refreshRate === '1h' ? '0 * * * *' :
-        params.refreshRate === '2h' ? '0 */2 * * *' :
-        _refreshRate;
+        if (params.refreshRate)
+            _refreshRate = _parseRefreshRateParam(params.refreshRate);
+
+    } catch (error) {
+        return process.stdout.write('ERROR: ', error.toString ? error.toString() : JSON.stringify(error));
+    }
 
     // Trigger cron && force first run
     cron.schedule(_refreshRate, _refreshProcess);
     _refreshProcess();
+
 })();
