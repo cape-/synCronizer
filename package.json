@@ -1,0 +1,16 @@
+{
+  "name": "syncronizer",
+  "version": "1.0.0",
+  "description": "Run cron-style tasks in parallel with the ability of runtime sharing.",
+  "main": "crond.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cron",
+    "environment",
+    "tasks"
+  ],
+  "author": "Lautaro Capella <laucape@gmail.com>",
+  "license": "MIT"
+}
