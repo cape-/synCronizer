@@ -39,6 +39,19 @@ Options:
         return _environments[environmentId];
     };
 
+    const _parseRefreshRateParam = function(refreshRate) {
+        const inputRegex = /(\d{1,3})([smhdw])/i; // 1 to 3 digits followed by [s, m, h, d, w]
+        const [match, numeral, timeFraction] = inputRegex.exec(refreshRate.toLowerCase());
+        const _parts = [
+            timeFraction === 's' ? `*/${numeral}` : '*',
+            timeFraction === 'm' ? `*/${numeral}` : '*',
+            timeFraction === 'h' ? `*/${numeral}` : '*',
+            timeFraction === 'd' ? `*/${numeral}` : '*',
+            timeFraction === 'o' ? `*/${numeral}` : '*'
+        ]
+        return _parts.join(' ');
+    }
+
     // helper fn: loads cron tasks and restart them
     const _refreshProcess = () => {
         var jobsTab = _loadJobsTab() || [];
