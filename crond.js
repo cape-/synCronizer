@@ -23,8 +23,8 @@ const path = require('path');
 Options:
 
   --tab-file <CRONTAB_FILE>                 set <CRONTAB_FILE> as jobs table source.
-  --refresh-rate <RATE>                     Time to wait before update <CRONTAB_FILE>. 
-                                            Accepted values: '1s','10s', '1m','5m','1h','2h'. 
+  --refresh-rate <RATE>                     <CRONTAB_FILE> refresh time expressed in human. 
+                                            Example accepted values: '15s', '43m', '1h', '30d', '3o'... 
                                             Default '1m'. 
   --help                                    Prints this help
     
