@@ -12,5 +12,8 @@
     "tasks"
   ],
   "author": "Lautaro Capella <laucape@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "node-cron": "^3.0.1"
+  }
 }
