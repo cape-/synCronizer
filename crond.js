@@ -39,6 +39,7 @@ Options:
         return _environments[environmentId];
     };
 
+    // Parser fn to translate human-redable to cron-style
     const _parseRefreshRateParam = function(refreshRate) {
         const inputRegex = /(\d{1,3})([smhdw])/i; // 1 to 3 digits followed by [s, m, h, d, w]
         const [match, numeral, timeFraction] = inputRegex.exec(refreshRate.toLowerCase());
