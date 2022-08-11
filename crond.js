@@ -16,7 +16,7 @@ const path = require('path');
     const _environments = {};
     var _procsArr = [];
     var _tabFile = 'crontab.js';
-    var _refreshRate = '*/30 * * * * *';
+    var _refreshRate = _parseRefreshRateParam('1m');
     // Helper fn: prints usage (--help)
     const _printHelp = () => process.stdout.write(`Usage: crond.js [options] [ cronTabFile.js ]
 
