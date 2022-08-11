@@ -44,7 +44,8 @@ Options:
             timeFraction === 'm' ? `*/${numeral}` : '*',
             timeFraction === 'h' ? `*/${numeral}` : '*',
             timeFraction === 'd' ? `*/${numeral}` : '*',
-            timeFraction === 'o' ? `*/${numeral}` : '*'
+            timeFraction === 'o' ? `*/${numeral}` : '*',
+            '*'
         ]
         return _parts.join(' ');
     }
