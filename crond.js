@@ -9,6 +9,7 @@
 const { parseArgv } = require('./util.js');
 const cron = require('node-cron');
 const path = require('path');
+const __DEBUG__ = process.env.__DEBUG__ || false;
 
 (function() {
     "use strict";
@@ -47,6 +48,8 @@ Options:
             timeFraction === 'o' ? `*/${numeral}` : '*',
             '*'
         ]
+        if (__DEBUG__)
+            console.log('Refresh rate pattern', _parts.join(' '));
         return _parts.join(' ');
     }
 
@@ -54,7 +57,8 @@ Options:
     const _refreshProcess = () => {
         _reloadCycle++;
         var jobsTab = _loadJobsTab() || [];
-        process.stdout.write(`${(new Date()).toLocaleString()} CRON TAB LOADED: ${jobsTab.length} JOBS\n`);
+        if (__DEBUG__)
+            process.stdout.write(`\n\nCYCLE ${String(_reloadCycle).padStart(3,' ')} | ${(new Date()).toLocaleString()} | LOADING ${jobsTab.length} TASKS\n\n`);
         if (jobsTab.length) {
             // Stop jobs
             _procsArr.forEach(p => p.stop());
