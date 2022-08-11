@@ -52,6 +52,7 @@ Options:
 
     // helper fn: loads cron tasks and restart them
     const _refreshProcess = () => {
+        _reloadCycle++;
         var jobsTab = _loadJobsTab() || [];
         process.stdout.write(`${(new Date()).toLocaleString()} CRON TAB LOADED: ${jobsTab.length} JOBS\n`);
         if (jobsTab.length) {
@@ -68,6 +69,7 @@ Options:
     // Variables
     const _environments = {};
     var _procsArr = [];
+    var _reloadCycle = 0;
     var _tabFile = 'crontab.js';
     var _refreshRate = _parseRefreshRateParam('1m');
 
